@@ -121,3 +121,80 @@ body{
   opacity: 0.6;
   cursor: wait;
 }
+
+/* AJUSTES EXCLUSIVOS PARA CELULARES */
+@media (max-width: 600px) {
+
+  /* Wallpaper encaixado na tela */
+  #wallpaper {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Fundo de corações ocupando toda a tela */
+  #wallpaper .fundo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #wallpaper .fundo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Duas fotos alinhadas como um único quadro */
+  #wallpaper .logo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  #wallpaper .logo img {
+    display: block;
+    width: 50%;
+    height: auto;
+    max-height: 75%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  /* Moldura externa do conjunto */
+  #wallpaper .logo img:first-child {
+    border: 3px solid white;
+    border-right: 1px solid white;
+    border-radius: 10px 0 0 10px;
+  }
+
+  #wallpaper .logo img:last-child {
+    border: 3px solid white;
+    border-left: 1px solid white;
+    border-radius: 0 10px 10px 0;
+  }
+
+  /* Botão de download fora da imagem */
+  #baixar {
+    position: fixed;
+    z-index: 10;
+    right: 12px;
+    bottom: 12px;
+  }
+}
