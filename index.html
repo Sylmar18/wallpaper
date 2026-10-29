@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="assets/style.css">
   <title>SG</title>
 </head>
 
@@ -20,58 +20,60 @@
       <img src="img/foto02.jpeg" alt="foto02">
 
     </div>
+  </div>
 
 
 
-    <!-- Botão para baixar o papel de parede -->
-    <button id="baixar">Baixar wallpaper PNG</button>
+  <!-- Botão para baixar o papel de parede -->
+  <button id="baixar">Baixar wallpaper PNG</button>
 
-    <!-- Biblioteca para gerar a imagem -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- Biblioteca para gerar a imagem -->
 
-    <script>
-      const botao = document.getElementById("baixar");
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-      botao.addEventListener("click", async () => {
-        try {
-          botao.disabled = true;
-          botao.textContent = "Gerando imagem...";
+  <script>
+    const botao = document.getElementById("baixar");
 
-          const area = document.getElementById("wallpaper");
+    botao.addEventListener("click", async () => {
+      try {
+        botao.disabled = true;
+        botao.textContent = "Gerando imagem...";
 
-          if (!area) {
-            throw new Error(
-              'Não existe uma div com id="wallpaper" no HTML.'
-            );
-          }
+        const area = document.getElementById("wallpaper");
 
-          if (typeof html2canvas === "undefined") {
-            throw new Error(
-              "A biblioteca não carregou. Verifique sua conexão com a internet."
-            );
-          }
-
-          const imagem = await html2canvas(area, {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: "#000000"
-          });
-
-          const link = document.createElement("a");
-          link.download = "meu-papel-de-parede.png";
-          link.href = imagem.toDataURL("image/png");
-          link.click();
-
-        } catch (erro) {
-          console.error("Erro ao gerar imagem:", erro);
-          alert("Não foi possível gerar a imagem: " + erro.message);
-
-        } finally {
-          botao.disabled = false;
-          botao.textContent = "Baixar wallpaper PNG";
+        if (!area) {
+          throw new Error(
+            'Não existe uma div com id="wallpaper" no HTML.'
+          );
         }
-      });
-    </script>
+
+        if (typeof html2canvas === "undefined") {
+          throw new Error(
+            "A biblioteca não carregou. Verifique sua conexão com a internet."
+          );
+        }
+
+        const imagem = await html2canvas(area, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: "#000000"
+        });
+
+        const link = document.createElement("a");
+        link.download = "meu-papel-de-parede.png";
+        link.href = imagem.toDataURL("image/png");
+        link.click();
+
+      } catch (erro) {
+        console.error("Erro ao gerar imagem:", erro);
+        alert("Não foi possível gerar a imagem: " + erro.message);
+
+      } finally {
+        botao.disabled = false;
+        botao.textContent = "Baixar wallpaper PNG";
+      }
+    });
+  </script>
 
 </body>
 
