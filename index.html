@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/style.css">
+  <title>SG</title>
+</head>
+
+<body>
+  <div id="wallpaper">
+
+    <div class="fundo">
+      <img src="img/coracoes.jpeg" alt="coracoes">
+
+    </div>
+    <div class="logo">
+      <img src="img/foto01.jpeg" alt="foto01">
+      <img src="img/foto02.jpeg" alt="foto02">
+
+    </div>
+
+
+
+    <!-- Botão para baixar o papel de parede -->
+    <button id="baixar">Baixar wallpaper PNG</button>
+
+    <!-- Biblioteca para gerar a imagem -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+      const botao = document.getElementById("baixar");
+
+      botao.addEventListener("click", async () => {
+        try {
+          botao.disabled = true;
+          botao.textContent = "Gerando imagem...";
+
+          const area = document.getElementById("wallpaper");
+
+          if (!area) {
+            throw new Error(
+              'Não existe uma div com id="wallpaper" no HTML.'
+            );
+          }
+
+          if (typeof html2canvas === "undefined") {
+            throw new Error(
+              "A biblioteca não carregou. Verifique sua conexão com a internet."
+            );
+          }
+
+          const imagem = await html2canvas(area, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: "#000000"
+          });
+
+          const link = document.createElement("a");
+          link.download = "meu-papel-de-parede.png";
+          link.href = imagem.toDataURL("image/png");
+          link.click();
+
+        } catch (erro) {
+          console.error("Erro ao gerar imagem:", erro);
+          alert("Não foi possível gerar a imagem: " + erro.message);
+
+        } finally {
+          botao.disabled = false;
+          botao.textContent = "Baixar wallpaper PNG";
+        }
+      });
+    </script>
+
+</body>
+
+</html>
